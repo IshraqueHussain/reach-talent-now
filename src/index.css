@@ -155,4 +155,8 @@ All colors MUST be HSL.
     box-shadow: var(--card-shadow-hover);
     @apply -translate-y-1;
   }
+  html, body {
+    overflow-x: hidden;
+  }
+  
 }

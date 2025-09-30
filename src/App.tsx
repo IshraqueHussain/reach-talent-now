@@ -11,6 +11,7 @@ import About from "./components/About";
 import Services from "./components/Services";
 import Strengths from "./components/Strengths";
 import Partners from "./components/Partners";
+import LeadershipTeam from "./components/Leadership";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
@@ -24,6 +25,7 @@ const HomePage = () => (
     <Services />
     <Strengths />
     <Partners />
+    <LeadershipTeam />
     <Contact />
     <Footer />
   </div>
