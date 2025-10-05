@@ -41,7 +41,7 @@ const App = () => (
           <Route path="/" element={<HomePage />} />
           <Route path="/reach-talent-now" element={<HomePage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<HomePage />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

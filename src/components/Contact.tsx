@@ -15,18 +15,39 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    toast({
-      title: "Quote Request Submitted!",
-      description: "We'll contact you within 24 hours with a detailed quotation.",
-    });
-    
-    setIsSubmitting(false);
-    (e.target as HTMLFormElement).reset();
+
+    const formData = new FormData(e.target as HTMLFormElement);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch("https://heterographic-brittny-compulsorily.ngrok-free.dev/api/v1/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Quote Request Submitted!",
+          description: "We'll contact you within 24 hours with a detailed quotation.",
+        });
+        (e.target as HTMLFormElement).reset();
+      } else {
+        throw new Error("Failed to send email");
+      }
+    } catch (error) {
+      toast({
+        title: "Submission Failed",
+        description: "Please try again later.",
+      });
+      console.error(error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
 
   return (
     <section id="contact" className="py-20 section-gradient">
@@ -162,7 +183,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <h4 className="font-semibold text-primary">Phone</h4>
-                      <p className="text-muted-foreground">+971 XX XXX XXXX</p>
+                      <p className="text-muted-foreground">+971 54 726 1057</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
